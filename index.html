@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thư mời Lễ ký kết Giao ước PTT1 - Bà Nguyễn Thị Phương Thảo - Giám đốc điều hành TCT</title>
+    <style>
+        :root {
+            --bg-color: #000b18;
+            --envelope-color: #002d5a;
+            --envelope-inner: #001f3f;
+            --gold: #d4af37;
+            --gold-light: #f9e29c;
+            /* Tỷ lệ ảnh 1240x1748 ≈ 1:1.41 */
+            --letter-w: 580px; 
+            --letter-h: 818px; 
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at center, #001f3f 0%, #000b18 100%);
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        /* Chỉ dẫn: To hơn và Gần hơn */
+        .instruction {
+            margin-bottom: -40px; /* Đẩy sát xuống nắp phong bì */
+            text-align: center;
+            color: var(--gold-light);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 15;
+            opacity: 0.95;
+        }
+
+        .instruction p {
+            font-family: "Georgia", serif;
+            font-style: italic;
+            font-size: 1.8rem; /* Chữ to hơn */
+            font-weight: 500;
+            letter-spacing: 4px;
+            margin-bottom: 2px;
+            text-shadow: 0 0 20px rgba(249, 226, 156, 0.6);
+        }
+
+        .arrow-svg {
+            width: 45px; /* Mũi tên to hơn */
+            height: 45px;
+            fill: var(--gold-light);
+            animation: pulse-arrow 2s infinite;
+            filter: drop-shadow(0 0 8px rgba(249, 226, 156, 0.5));
+        }
+
+        @keyframes pulse-arrow {
+            0%, 100% { transform: translateY(0); opacity: 0.6; }
+            50% { transform: translateY(15px); opacity: 1; }
+        }
+
+        /* Envelope Styling */
+        .envelope-wrapper {
+            position: relative;
+            width: 380px;
+            height: 260px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin-top: 250px; /* Tăng khoảng cách trên để có chỗ cho chữ to */
+        }
+
+        .envelope-wrapper:hover {
+            transform: scale(1.02);
+        }
+
+        .envelope {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: var(--envelope-inner);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+        }
+
+        .lid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-top: 140px solid var(--envelope-color);
+            border-left: 190px solid transparent;
+            border-right: 190px solid transparent;
+            transform-origin: top;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 4;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
+        }
+
+        .side-flaps {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            background: 
+                linear-gradient(30deg, var(--envelope-color) 49%, transparent 50%) left bottom / 50% 100% no-repeat,
+                linear-gradient(-30deg, var(--envelope-color) 49%, transparent 50%) right bottom / 50% 100% no-repeat;
+        }
+
+        .bottom-flap {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 150px;
+            background: var(--envelope-color);
+            clip-path: polygon(0% 100%, 50% 30%, 100% 100%);
+            z-index: 3;
+            box-shadow: inset 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .letter {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 340px;
+            height: 230px; 
+            background-color: transparent; 
+            background-image: url('1.png'); 
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 2;
+            border: none;
+        }
+
+        .envelope-wrapper.open .lid {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        .envelope-wrapper.open .letter {
+            transform: translate(-50%, -500px);
+            height: var(--letter-h);
+            width: var(--letter-w);
+            z-index: 10;
+            box-shadow: 0 30px 120px rgba(0,0,0,1);
+        }
+
+        .envelope-wrapper.open ~ .instruction {
+            opacity: 0;
+            transform: translateY(-40px);
+            pointer-events: none;
+        }
+
+        .seal {
+            position: absolute;
+            top: 120px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light), var(--gold));
+            border-radius: 50%;
+            z-index: 5;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #4a3800;
+            font-weight: bold;
+            font-size: 18px;
+            border: 1px solid rgba(255,255,255,0.4);
+            transition: all 0.4s ease;
+        }
+
+        .envelope-wrapper.open .seal {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.5);
+        }
+
+        @media (max-width: 600px) {
+            .instruction { margin-bottom: -30px; }
+            .instruction p { font-size: 1.4rem; }
+            .envelope-wrapper {
+                width: 300px;
+                height: 200px;
+                margin-top: 180px;
+            }
+            .envelope-wrapper.open .letter {
+                width: 95vw;
+                height: 134vw;
+                transform: translate(-50%, -340px);
+            }
+            .lid { border-top-width: 110px; border-left-width: 150px; border-right-width: 150px; }
+            .seal { top: 100px; width: 55px; height: 55px; }
+        }
+
+        @media (max-height: 900px) and (min-width: 601px) {
+            .envelope-wrapper.open .letter {
+                transform: translate(-50%, -450px) scale(0.85);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="particles"></canvas>
+
+    <div class="container">
+        <div class="instruction" id="hint">
+            <p>Trân trọng kính mời</p>
+            <svg class="arrow-svg" viewBox="0 0 24 24">
+                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+            </svg>
+        </div>
+
+        <div class="envelope-wrapper" id="envelope">
+            <div class="lid"></div>
+            <div class="side-flaps"></div>
+            <div class="bottom-flap"></div>
+            <div class="seal">PTT1</div>
+            
+            <div class="letter" id="mainLetter"></div>
+        </div>
+    </div>
+
+    <script>
+        const envelope = document.getElementById('envelope');
+        const hint = document.getElementById('hint');
+        
+        envelope.addEventListener('click', () => {
+            envelope.classList.toggle('open');
+            if(envelope.classList.contains('open')) {
+                hint.style.opacity = '0';
+            } else {
+                hint.style.opacity = '0.95';
+            }
+        });
+
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2.8 + 0.5;
+                this.speedY = Math.random() * 0.4 + 0.1;
+                this.opacity = Math.random() * 0.5 + 0.2;
+                this.blink = Math.random() * 0.012;
+            }
+            update() {
+                this.y -= this.speedY;
+                this.opacity += this.blink;
+                if (this.opacity > 0.8 || this.opacity < 0.2) this.blink *= -1;
+                if (this.y < 0) this.reset();
+            }
+            draw() {
+                ctx.fillStyle = `rgba(249, 226, 156, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const count = window.innerWidth < 600 ? 50 : 100;
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        initParticles();
+        animate();
+    </script>
+</body>
+</html>
